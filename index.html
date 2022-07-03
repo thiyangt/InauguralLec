@@ -6,6 +6,14 @@
     <meta name="author" content="Dr Thiyanga Talagala" />
     <script src="index_files/header-attrs/header-attrs.js"></script>
     <link href="index_files/remark-css/rladies-fonts.css" rel="stylesheet" />
+    <script src="index_files/htmlwidgets/htmlwidgets.js"></script>
+    <script src="index_files/plotly-binding/plotly.js"></script>
+    <script src="index_files/typedarray/typedarray.min.js"></script>
+    <script src="index_files/jquery/jquery.min.js"></script>
+    <link href="index_files/crosstalk/css/crosstalk.min.css" rel="stylesheet" />
+    <script src="index_files/crosstalk/js/crosstalk.min.js"></script>
+    <link href="index_files/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
+    <script src="index_files/plotly-main/plotly-latest.min.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
   <body>
@@ -150,7 +158,14 @@ Image data
 
 
 
+
 ]
+
+---
+
+
+
+
 
 ---
 
@@ -199,6 +214,446 @@ class: center, middle
 
 The science of collecting, **analyzing**, presenting, and interpreting **data**.
 
+---
+background-image: url(orange.jpeg)
+background-size: cover
+
+# Data analysis
+
+---
+
+.pull-left[
+
+
+```
+     ID Gender     A   B   C Weight
+1     1   Male  80.0 3.6 2.5   4000
+2     2 Female  90.0 2.5 6.3   5000
+3     3 Female 110.0 4.0 4.5   6000
+4     4 Female 100.0 4.5 3.2   7000
+5     5 Female  91.5 3.0 3.5   7550
+6     6   Male  92.0 3.9 3.7   4500
+7     7   Male  88.0 4.2 3.8   3375
+8     8   Male  70.0 4.6 3.9   5500
+9     9 Female  99.4 3.8 2.3   3948
+10   10 Female 100.2 3.7 4.2   3787
+11   11 Female 101.3 4.9 3.3   5043
+12   12 Female  99.0 3.3 2.6   3420
+13   13 Female 100.8 3.2 3.4   3275
+14   14 Female 101.6 4.9 2.7   4951
+15   15 Female  99.2 2.4 4.2   2463
+16   16 Female 100.7 6.7 3.3   6769
+17   17 Female 101.2 2.8 3.2   2941
+18   18 Female 100.5 3.8 3.2   3905
+19   19 Female  98.0 2.5 4.7   2623
+20   20 Female 101.9 3.3 4.7   3351
+21   21 Female  99.6 3.4 2.8   3500
+22   22 Female  98.0 2.9 4.4   3038
+23   23 Female 100.3 3.0 2.3   3061
+24   24 Female 100.2 2.1 5.9   2207
+25   25 Female  99.8 3.0 2.6   3067
+26   26 Female 100.3 4.2 3.4   4330
+27   27 Female  98.9 2.9 3.4   2979
+28   28 Female 101.5 3.8 3.9   3861
+29   29 Female  99.5 3.4 2.2   3506
+30   30 Female 100.9 2.8 3.0   2918
+31   31 Female  99.4 4.7 4.6   4847
+32   32 Female  99.6 4.6 4.0   4660
+33   33 Female 100.1 4.3 4.1   4439
+34   34 Female  98.7 3.2 3.1   3328
+35   35 Female 100.4 2.9 6.1   2998
+36   36 Female  99.7 4.0 2.8   4100
+37   37 Female 101.2 3.6 2.9   3705
+38   38 Female 100.7 6.3 3.4   6365
+39   39 Female 100.2 4.0 2.1   4095
+40   40 Female 100.6 2.5 3.9   2602
+41   41 Female  99.5 4.3 3.4   4362
+42   42 Female  98.2 3.3 3.2   3355
+43   43 Female  99.2 4.7 4.0   4781
+44   44 Female  99.9 4.7 4.9   4816
+45   45 Female  98.6 3.1 3.8   3192
+46   46 Female 101.9 3.4 3.6   3539
+47   47 Female 101.5 3.4 3.4   3505
+48   48 Female 100.6 2.9 3.1   2977
+49   49 Female 100.9 3.4 3.3   3487
+50   50 Female  98.0 2.0 2.8   2138
+51   51 Female  99.2 2.1 3.4   2207
+52   52 Female  98.2 4.2 2.5   4297
+53   53 Female 100.0 2.7 2.3   2847
+54   54 Female 100.5 3.4 3.5   3509
+55   55   Male 100.8 3.0 2.9   4542
+56   56   Male 101.2 2.9 2.4   4435
+57   57   Male 101.1 2.9 5.5   4512
+58   58   Male  99.3 2.7 3.1   4134
+59   59   Male 100.4 3.6 3.0   5458
+60   60   Male  99.6 3.9 4.4   5953
+61   61   Male 100.5 3.8 4.2   5773
+62   62   Male 100.8 1.8 3.3   2808
+63   63   Male 100.0 1.7 5.0   2709
+64   64   Male  98.9 4.1 3.2   6234
+65   65   Male 100.6 3.1 3.2   4712
+66   66   Male 100.6 2.4 3.4   3709
+67   67   Male 100.8 2.1 3.6   3243
+68   68   Male  99.8 1.7 3.4   2577
+69   69   Male  99.4 2.7 4.0   4173
+70   70   Male 100.7 1.8 4.2   2787
+71   71   Male  99.2 3.7 4.5   5721
+72   72   Male 100.1 3.0 2.4   4564
+73   73   Male 100.2 4.0 3.0   6056
+74   74   Male  99.7 3.3 5.4   5103
+75   75   Male  99.9 4.1 4.0   6186
+76   76   Male 100.9 3.8 1.4   5838
+77   77   Male  99.0 3.5 3.1   5422
+78   78   Male  99.5 3.0 5.2   4636
+79   79   Male  99.4 2.9 1.8   4503
+80   80   Male 100.8 3.0 4.1   4618
+81   81   Male  99.3 3.7 3.9   5674
+82   82   Male 101.1 2.8 3.6   4283
+83   83   Male  99.1 3.9 3.2   6020
+84   84   Male  99.9 3.7 3.8   5686
+85   85   Male  98.4 2.9 4.8   4407
+86   86   Male  99.0 4.9 3.4   7492
+87   87   Male  99.5 2.4 3.4   3758
+88   88   Male 102.2 2.5 3.3   3821
+89   89   Male  99.4 2.6 3.4   3931
+90   90   Male 102.3 1.5 2.7   2358
+91   91   Male  99.8 3.6 5.0   5566
+92   92   Male 100.7 4.2 4.6   6470
+93   93   Male 100.3 2.1 5.0   3289
+94   94   Male  98.6 4.2 4.3   6452
+95   95   Male  99.7 3.1 3.7   4730
+96   96   Male  99.7 1.6 2.8   2485
+97   97   Male  98.8 2.8 3.7   4336
+98   98   Male 100.5 3.9 1.5   6017
+99   99   Male  99.9 2.7 4.4   4129
+100 100   Male  99.8 4.0 2.4   6141
+```
+]
+
+--
+
+.pull-right[
+
+&lt;img src="index_files/figure-html/unnamed-chunk-2-1.png" width="100%" /&gt;
+
+]
+
+
+---
+
+.pull-left[
+
+
+```
+     ID Gender     A   B   C Weight
+1     1   Male  80.0 3.6 2.5   4000
+2     2 Female  90.0 2.5 6.3   5000
+3     3 Female 110.0 4.0 4.5   6000
+4     4 Female 100.0 4.5 3.2   7000
+5     5 Female  91.5 3.0 3.5   7550
+6     6   Male  92.0 3.9 3.7   4500
+7     7   Male  88.0 4.2 3.8   3375
+8     8   Male  70.0 4.6 3.9   5500
+9     9 Female 100.9 2.4 2.3   2482
+10   10 Female 100.0 2.2 0.6   2317
+11   11 Female 100.0 3.8 2.5   3859
+12   12 Female 100.8 4.1 3.4   4158
+13   13 Female  99.2 2.3 4.8   2434
+14   14 Female 101.7 3.6 3.5   3692
+15   15 Female  99.8 3.8 3.9   3920
+16   16 Female  99.4 4.8 5.6   4890
+17   17 Female 100.0 4.2 4.2   4339
+18   18 Female  99.7 2.9 2.4   3006
+19   19 Female  99.1 4.1 3.3   4188
+20   20 Female  99.8 4.2 4.1   4293
+21   21 Female  99.8 4.3 3.0   4371
+22   22 Female 100.9 2.6 3.5   2668
+23   23 Female  98.8 3.8 2.9   3876
+24   24 Female  98.8 3.9 4.4   4001
+25   25 Female  99.4 2.4 5.2   2486
+26   26 Female  99.9 1.6 2.0   1738
+27   27 Female  99.7 3.4 3.6   3498
+28   28 Female 100.7 4.2 4.6   4307
+29   29 Female 101.9 2.9 3.6   2994
+30   30 Female  99.0 3.8 4.6   3938
+31   31 Female 100.7 2.6 4.0   2694
+32   32 Female  99.5 3.9 4.5   3973
+33   33 Female 100.1 2.3 5.4   2351
+34   34 Female  99.4 3.9 5.0   3979
+35   35 Female  99.7 4.8 2.6   4857
+36   36 Female  99.6 3.1 3.1   3223
+37   37 Female 100.7 2.1 4.9   2154
+38   38 Female  97.9 3.9 5.9   4027
+39   39 Female 100.4 2.7 4.3   2764
+40   40 Female 100.1 3.3 5.1   3387
+41   41 Female 101.1 2.0 4.2   2125
+42   42 Female 100.9 3.5 3.9   3618
+43   43 Female 100.2 2.7 4.1   2807
+44   44 Female 100.7 3.0 2.7   3111
+45   45 Female  99.9 5.2 3.4   5304
+46   46 Female 100.4 4.2 2.0   4309
+47   47 Female 100.6 2.9 4.0   3037
+48   48 Female 101.1 3.0 2.2   3150
+49   49 Female  99.6 3.1 3.2   3207
+50   50 Female  99.2 2.7 2.1   2810
+51   51 Female 100.0 4.2 4.1   4343
+52   52 Female 100.3 3.2 3.2   3339
+53   53 Female 100.7 3.3 3.5   3421
+54   54 Female  98.8 3.2 2.4   3321
+55   55   Male  98.2 5.1 4.1   7702
+56   56   Male  98.9 4.4 4.0   6655
+57   57   Male 100.0 1.6 3.5   2529
+58   58   Male  99.0 2.7 2.3   4218
+59   59   Male 101.1 4.3 4.0   6598
+60   60   Male 100.0 3.3 5.4   5045
+61   61   Male 100.7 3.9 3.3   5984
+62   62   Male  99.9 3.1 4.9   4818
+63   63   Male  98.8 2.3 4.1   3503
+64   64   Male 100.1 1.8 3.4   2870
+65   65   Male 100.5 2.9 5.0   4409
+66   66   Male 100.4 3.9 1.0   5997
+67   67   Male  99.7 3.1 4.6   4799
+68   68   Male  98.5 1.8 3.3   2726
+69   69   Male  99.5 3.1 3.1   4818
+70   70   Male 101.4 2.9 2.9   4446
+71   71   Male  98.0 3.7 1.5   5633
+72   72   Male 100.1 2.3 5.4   3518
+73   73   Male 100.0 1.9 5.6   2933
+74   74   Male 101.3 3.1 5.0   4786
+75   75   Male 100.4 2.9 0.3   4390
+76   76   Male 101.7 2.0 4.3   3046
+77   77   Male 101.1 3.2 2.3   4866
+78   78   Male  98.3 1.9 1.6   3003
+79   79   Male 100.1 2.7 3.3   4129
+80   80   Male 101.0 4.0 4.2   6027
+81   81   Male 100.2 1.0 2.9   1657
+82   82   Male  99.6 4.6 4.1   7015
+83   83   Male  99.9 3.9 4.4   6021
+84   84   Male 100.6 4.2 2.3   6431
+85   85   Male  99.6 2.2 2.2   3457
+86   86   Male 100.8 2.7 3.6   4155
+87   87   Male  99.7 2.6 5.6   4027
+88   88   Male  99.2 3.1 3.9   4769
+89   89   Male 101.1 2.9 3.4   4399
+90   90   Male  99.9 2.2 4.4   3355
+91   91   Male  99.7 3.7 2.9   5723
+92   92   Male 100.6 2.3 4.0   3619
+93   93   Male  99.0 2.9 3.5   4519
+94   94   Male 100.0 2.8 3.2   4341
+95   95   Male 100.4 2.9 2.7   4425
+96   96   Male  98.3 2.3 3.4   3509
+97   97   Male  99.1 4.7 3.1   7192
+98   98   Male  99.5 2.3 3.0   3504
+99   99   Male  99.2 3.6 3.4   5451
+100 100   Male 100.6 2.5 5.3   3778
+```
+]
+
+
+.pull-right[
+
+&lt;img src="index_files/figure-html/unnamed-chunk-4-1.png" width="100%" /&gt;
+
+]
+
+
+---
+
+.pull-left[
+
+
+```
+     ID Gender     A   B   C Weight
+1     1   Male  80.0 3.6 2.5   4000
+2     2 Female  90.0 2.5 6.3   5000
+3     3 Female 110.0 4.0 4.5   6000
+4     4 Female 100.0 4.5 3.2   7000
+5     5 Female  91.5 3.0 3.5   7550
+6     6   Male  92.0 3.9 3.7   4500
+7     7   Male  88.0 4.2 3.8   3375
+8     8   Male  70.0 4.6 3.9   5500
+9     9 Female 100.4 4.4 4.1   4451
+10   10 Female 100.2 4.0 4.5   4097
+11   11 Female 101.0 2.7 3.9   2827
+12   12 Female 100.6 4.4 2.7   4546
+13   13 Female 101.6 5.4 2.5   5540
+14   14 Female  97.7 3.2 4.1   3327
+15   15 Female 100.4 3.1 4.9   3224
+16   16 Female 100.1 5.3 5.0   5385
+17   17 Female  98.3 3.5 4.2   3591
+18   18 Female 100.5 4.3 3.4   4415
+19   19 Female 100.6 5.1 3.1   5235
+20   20 Female 101.5 2.3 3.0   2428
+21   21 Female  99.8 2.5 5.4   2617
+22   22 Female 101.2 3.6 2.2   3699
+23   23 Female 100.1 4.2 3.2   4310
+24   24 Female  99.0 3.0 3.7   3057
+25   25 Female 100.1 5.0 2.2   5062
+26   26 Female 100.0 3.8 3.8   3897
+27   27 Female 102.2 1.8 4.3   1915
+28   28 Female 100.2 4.2 3.8   4287
+29   29 Female  99.9 3.5 5.4   3617
+30   30 Female  99.0 3.1 4.0   3242
+31   31 Female 101.4 2.7 4.6   2845
+32   32 Female 100.3 4.6 3.8   4710
+33   33 Female 100.8 2.9 2.4   3003
+34   34 Female  99.3 2.9 5.7   3028
+35   35 Female 102.5 5.1 3.6   5183
+36   36 Female  99.3 2.9 2.4   3040
+37   37 Female  99.9 4.5 1.9   4551
+38   38 Female  99.4 2.2 3.4   2250
+39   39 Female  99.8 2.7 3.5   2849
+40   40 Female 100.4 4.6 3.7   4740
+41   41 Female 100.8 3.7 4.5   3785
+42   42 Female 101.5 4.9 4.1   5036
+43   43 Female 100.2 3.8 2.7   3947
+44   44 Female  99.6 4.9 3.2   5023
+45   45 Female 100.1 2.9 2.9   2957
+46   46 Female  99.0 5.2 3.2   5270
+47   47 Female 100.1 2.2 4.1   2316
+48   48 Female 100.0 2.4 2.9   2474
+49   49 Female 100.9 4.6 3.2   4731
+50   50 Female 100.0 1.9 1.3   2045
+51   51 Female  98.7 4.7 5.0   4820
+52   52 Female  99.5 3.1 2.3   3246
+53   53 Female  98.8 3.5 4.3   3553
+54   54 Female 101.2 3.2 3.8   3329
+55   55   Male 101.4 4.1 5.4   6301
+56   56   Male 100.8 4.7 4.0   7196
+57   57   Male 100.2 4.2 3.5   6406
+58   58   Male  99.0 2.5 3.5   3821
+59   59   Male 101.6 3.8 4.5   5832
+60   60   Male 100.7 3.2 2.5   4842
+61   61   Male 101.0 3.4 3.7   5218
+62   62   Male  98.5 1.7 3.1   2716
+63   63   Male 100.0 2.1 3.7   3316
+64   64   Male 101.4 3.8 4.9   5726
+65   65   Male 100.3 3.4 2.8   5194
+66   66   Male 101.0 3.2 3.5   4846
+67   67   Male  97.1 2.0 3.5   3138
+68   68   Male  99.6 3.4 4.8   5155
+69   69   Male  98.1 1.8 3.5   2783
+70   70   Male  99.5 3.7 3.3   5706
+71   71   Male  99.7 3.5 4.0   5417
+72   72   Male 100.8 3.0 4.7   4555
+73   73   Male 101.3 3.4 1.0   5187
+74   74   Male  98.7 3.0 4.4   4578
+75   75   Male  98.9 2.6 2.9   3993
+76   76   Male 101.1 5.0 1.6   7600
+77   77   Male 100.4 3.7 3.8   5628
+78   78   Male 101.8 2.2 3.4   3367
+79   79   Male 102.2 3.6 2.3   5442
+80   80   Male 100.2 3.2 2.7   4940
+81   81   Male  99.9 2.6 4.1   4007
+82   82   Male  99.0 1.6 4.7   2485
+83   83   Male  98.8 3.7 2.3   5712
+84   84   Male  98.8 2.7 3.2   4128
+85   85   Male 100.3 2.9 4.3   4519
+86   86   Male 101.1 2.2 3.0   3379
+87   87   Male  99.4 3.1 4.4   4760
+88   88   Male 101.8 3.3 3.4   5094
+89   89   Male  99.2 3.1 2.0   4747
+90   90   Male 101.5 2.5 3.2   3855
+91   91   Male  98.6 3.5 5.1   5293
+92   92   Male  99.5 4.4 2.7   6735
+93   93   Male 100.6 3.3 4.7   5061
+94   94   Male  99.3 3.1 3.3   4770
+95   95   Male 101.1 3.3 3.8   5023
+96   96   Male  99.0 4.4 4.0   6662
+97   97   Male  97.6 4.1 3.4   6286
+98   98   Male 100.0 2.6 5.8   3959
+99   99   Male 100.8 1.8 3.6   2772
+100 100   Male  98.1 2.2 2.6   3350
+```
+]
+
+
+.pull-right[
+
+<div id="htmlwidget-0abc98efd53c29b1a522" style="width:100%;height:504px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0abc98efd53c29b1a522">{"x":{"data":[{"x":[2.5,4,4.5,3,2.4,2.2,3.8,4.1,2.3,3.6,3.8,4.8,4.2,2.9,4.1,4.2,4.3,2.6,3.8,3.9,2.4,1.6,3.4,4.2,2.9,3.8,2.6,3.9,2.3,3.9,4.8,3.1,2.1,3.9,2.7,3.3,2,3.5,2.7,3,5.2,4.2,2.9,3,3.1,2.7,4.2,3.2,3.3,3.2],"y":[5000,6000,7000,7550,2482,2317,3859,4158,2434,3692,3920,4890,4339,3006,4188,4293,4371,2668,3876,4001,2486,1738,3498,4307,2994,3938,2694,3973,2351,3979,4857,3223,2154,4027,2764,3387,2125,3618,2807,3111,5304,4309,3037,3150,3207,2810,4343,3339,3421,3321],"text":["B: 2.5<br />Weight: 5000<br />Gender: Female","B: 4.0<br />Weight: 6000<br />Gender: Female","B: 4.5<br />Weight: 7000<br />Gender: Female","B: 3.0<br />Weight: 7550<br />Gender: Female","B: 2.4<br />Weight: 2482<br />Gender: Female","B: 2.2<br />Weight: 2317<br />Gender: Female","B: 3.8<br />Weight: 3859<br />Gender: Female","B: 4.1<br />Weight: 4158<br />Gender: Female","B: 2.3<br />Weight: 2434<br />Gender: Female","B: 3.6<br />Weight: 3692<br />Gender: Female","B: 3.8<br />Weight: 3920<br />Gender: Female","B: 4.8<br />Weight: 4890<br />Gender: Female","B: 4.2<br />Weight: 4339<br />Gender: Female","B: 2.9<br />Weight: 3006<br />Gender: Female","B: 4.1<br />Weight: 4188<br />Gender: Female","B: 4.2<br />Weight: 4293<br />Gender: Female","B: 4.3<br />Weight: 4371<br />Gender: Female","B: 2.6<br />Weight: 2668<br />Gender: Female","B: 3.8<br />Weight: 3876<br />Gender: Female","B: 3.9<br />Weight: 4001<br />Gender: Female","B: 2.4<br />Weight: 2486<br />Gender: Female","B: 1.6<br />Weight: 1738<br />Gender: Female","B: 3.4<br />Weight: 3498<br />Gender: Female","B: 4.2<br />Weight: 4307<br />Gender: Female","B: 2.9<br />Weight: 2994<br />Gender: Female","B: 3.8<br />Weight: 3938<br />Gender: Female","B: 2.6<br />Weight: 2694<br />Gender: Female","B: 3.9<br />Weight: 3973<br />Gender: Female","B: 2.3<br />Weight: 2351<br />Gender: Female","B: 3.9<br />Weight: 3979<br />Gender: Female","B: 4.8<br />Weight: 4857<br />Gender: Female","B: 3.1<br />Weight: 3223<br />Gender: Female","B: 2.1<br />Weight: 2154<br />Gender: Female","B: 3.9<br />Weight: 4027<br />Gender: Female","B: 2.7<br />Weight: 2764<br />Gender: Female","B: 3.3<br />Weight: 3387<br />Gender: Female","B: 2.0<br />Weight: 2125<br />Gender: Female","B: 3.5<br />Weight: 3618<br />Gender: Female","B: 2.7<br />Weight: 2807<br />Gender: Female","B: 3.0<br />Weight: 3111<br />Gender: Female","B: 5.2<br />Weight: 5304<br />Gender: Female","B: 4.2<br />Weight: 4309<br />Gender: Female","B: 2.9<br />Weight: 3037<br />Gender: Female","B: 3.0<br />Weight: 3150<br />Gender: Female","B: 3.1<br />Weight: 3207<br />Gender: Female","B: 2.7<br />Weight: 2810<br />Gender: Female","B: 4.2<br />Weight: 4343<br />Gender: Female","B: 3.2<br />Weight: 3339<br />Gender: Female","B: 3.3<br />Weight: 3421<br />Gender: Female","B: 3.2<br />Weight: 3321<br />Gender: Female"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(231,41,138,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(231,41,138,1)"}},"hoveron":"points","name":"Female","legendgroup":"Female","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[3.6,3.9,4.2,4.6,5.1,4.4,1.6,2.7,4.3,3.3,3.9,3.1,2.3,1.8,2.9,3.9,3.1,1.8,3.1,2.9,3.7,2.3,1.9,3.1,2.9,2,3.2,1.9,2.7,4,1,4.6,3.9,4.2,2.2,2.7,2.6,3.1,2.9,2.2,3.7,2.3,2.9,2.8,2.9,2.3,4.7,2.3,3.6,2.5],"y":[4000,4500,3375,5500,7702,6655,2529,4218,6598,5045,5984,4818,3503,2870,4409,5997,4799,2726,4818,4446,5633,3518,2933,4786,4390,3046,4866,3003,4129,6027,1657,7015,6021,6431,3457,4155,4027,4769,4399,3355,5723,3619,4519,4341,4425,3509,7192,3504,5451,3778],"text":["B: 3.6<br />Weight: 4000<br />Gender: Male","B: 3.9<br />Weight: 4500<br />Gender: Male","B: 4.2<br />Weight: 3375<br />Gender: Male","B: 4.6<br />Weight: 5500<br />Gender: Male","B: 5.1<br />Weight: 7702<br />Gender: Male","B: 4.4<br />Weight: 6655<br />Gender: Male","B: 1.6<br />Weight: 2529<br />Gender: Male","B: 2.7<br />Weight: 4218<br />Gender: Male","B: 4.3<br />Weight: 6598<br />Gender: Male","B: 3.3<br />Weight: 5045<br />Gender: Male","B: 3.9<br />Weight: 5984<br />Gender: Male","B: 3.1<br />Weight: 4818<br />Gender: Male","B: 2.3<br />Weight: 3503<br />Gender: Male","B: 1.8<br />Weight: 2870<br />Gender: Male","B: 2.9<br />Weight: 4409<br />Gender: Male","B: 3.9<br />Weight: 5997<br />Gender: Male","B: 3.1<br />Weight: 4799<br />Gender: Male","B: 1.8<br />Weight: 2726<br />Gender: Male","B: 3.1<br />Weight: 4818<br />Gender: Male","B: 2.9<br />Weight: 4446<br />Gender: Male","B: 3.7<br />Weight: 5633<br />Gender: Male","B: 2.3<br />Weight: 3518<br />Gender: Male","B: 1.9<br />Weight: 2933<br />Gender: Male","B: 3.1<br />Weight: 4786<br />Gender: Male","B: 2.9<br />Weight: 4390<br />Gender: Male","B: 2.0<br />Weight: 3046<br />Gender: Male","B: 3.2<br />Weight: 4866<br />Gender: Male","B: 1.9<br />Weight: 3003<br />Gender: Male","B: 2.7<br />Weight: 4129<br />Gender: Male","B: 4.0<br />Weight: 6027<br />Gender: Male","B: 1.0<br />Weight: 1657<br />Gender: Male","B: 4.6<br />Weight: 7015<br />Gender: Male","B: 3.9<br />Weight: 6021<br />Gender: Male","B: 4.2<br />Weight: 6431<br />Gender: Male","B: 2.2<br />Weight: 3457<br />Gender: Male","B: 2.7<br />Weight: 4155<br />Gender: Male","B: 2.6<br />Weight: 4027<br />Gender: Male","B: 3.1<br />Weight: 4769<br />Gender: Male","B: 2.9<br />Weight: 4399<br />Gender: Male","B: 2.2<br />Weight: 3355<br />Gender: Male","B: 3.7<br />Weight: 5723<br />Gender: Male","B: 2.3<br />Weight: 3619<br />Gender: Male","B: 2.9<br />Weight: 4519<br />Gender: Male","B: 2.8<br />Weight: 4341<br />Gender: Male","B: 2.9<br />Weight: 4425<br />Gender: Male","B: 2.3<br />Weight: 3509<br />Gender: Male","B: 4.7<br />Weight: 7192<br />Gender: Male","B: 2.3<br />Weight: 3504<br />Gender: Male","B: 3.6<br />Weight: 5451<br />Gender: Male","B: 2.5<br />Weight: 3778<br />Gender: Male"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(27,158,119,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(27,158,119,1)"}},"hoveron":"points","name":"Male","legendgroup":"Male","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":40.8401826484018,"r":7.30593607305936,"b":37.2602739726027,"l":48.9497716894977},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":{"text":"Scatterplot of weight (kg) vs B (ft)","font":{"color":"rgba(0,0,0,1)","family":"","size":17.5342465753425},"x":0.5,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.79,5.41],"tickmode":"array","ticktext":["1","2","3","4","5"],"tickvals":[1,2,3,4,5],"categoryorder":"array","categoryarray":["1","2","3","4","5"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"B (ft)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[1354.75,8004.25],"tickmode":"array","ticktext":["2000","4000","6000","8000"],"tickvals":[2000,4000,6000,8000],"categoryorder":"array","categoryarray":["2000","4000","6000","8000"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"Weight (kg)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"title":{"text":"Gender","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"e0322b65b7e":{"x":{},"y":{},"colour":{},"type":"scatter"}},"cur_data":"e0322b65b7e","visdat":{"e0322b65b7e":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+
+]
+
+---
+background-image: url(i7.png)
+background-size: cover
+
+---
+
+class: center, middle
+
+# What is Statistics?
+
+The science of collecting, analyzing, **presenting, and interpreting** **data**.
+
+
+
+---
+class: center, middle
+
+# Myth-busting Statistics
+
+--
+
+Popular Myths (**false beliefs**) about statistics
+
+---
+class: inverse, center, middle
+
+**Myth 1**
+
+**Statistics is a boring subject.**
+
+
+
+---
+class: inverse, center, middle
+
+~~**Myth 1**~~
+
+**Statistics is a** ~~**boring subject**~~.
+
+
+
+ # **Statistics is a** very interesting and useful subject with so many applications.
+ 
+---
+background-image: url(i8.png)
+background-size: contain
+
+
+
+---
+background-image: url(i9.jpeg)
+background-size: contain
+
+---
+background-image: url(l2.png)
+background-size: contain
+
+---
+background-image: url(l1.png)
+background-size: contain
+
+---
+class: inverse, center, middle
+
+**Myth 2**
+
+**Statistics hasn't changed much in years. It is just the same old stuff.**
+
+
+
+
+---
+class: inverse, center, middle
+
+~~**Myth 2**~~
+
+~~**Statistics hasn't changed much in years. It is just the same old stuff.**~~
+
+## The field of statistics has evolved significantly over time. It has also become a main componenet of many other disciplines.
 ---
 
 References

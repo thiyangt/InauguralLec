@@ -19,7 +19,6 @@ output:
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(
-  fig.width=9, fig.height=3.5, fig.retina=3,
   out.width = "100%",
   cache = FALSE,
   echo = TRUE,
@@ -150,7 +149,14 @@ Image data
 
 
 
+
 ]
+
+---
+
+
+
+
 
 ---
 
@@ -199,6 +205,213 @@ class: center, middle
 
 The science of collecting, **analyzing**, presenting, and interpreting **data**.
 
+---
+background-image: url(orange.jpeg)
+background-size: cover
+
+# Data analysis
+
+---
+
+.pull-left[
+
+```{r, comment=NA, echo=FALSE}
+ID <- 1:100
+g1 <- c("Male", "Female", "Female", "Female", "Female", "Male", "Male", "Male") 
+Gender <- c(g1, rep("Female", 46), rep("Male", 46))
+b2 <- rnorm(46, mean=3.5) 
+b3 <- rnorm(46, mean=3)
+w2 <- 1000*b2 + rnorm(46, mean=100)
+w3 <- 1500*b3 + rnorm(46, mean=100)
+b1 <- c(3.6, 2.5, 4, 4.5, 3, 3.9, 4.2, 4.6)
+w1 <- c(4000, 5000, 6000, 7000, 7550, 4500, 3375, 5500)
+B <- round(c(b1, b2, b3), 1)
+Weight <- round(c(w1, w2, w3), 0)
+a1 <- c(80, 90, 110, 100, 91.5, 92, 88, 70) 
+a2 <- rnorm(92, mean=100)
+A <- round(c(a1, a2), 1)
+c1 <- c(2.5, 6.3, 4.5, 3.2, 3.5, 3.7, 3.8, 3.9)
+c2 <- rnorm(92, mean=3.5)
+C <- round(c(c1, c2), 1)
+df <- data.frame(ID, Gender, A, B, C, Weight)
+df
+```
+]
+
+--
+
+.pull-right[
+
+```{r, echo=FALSE, comment=NA, warning=FALSE, message=FALSE}
+
+library(ggplot2)
+ggplot(data=df, aes(x=B, y=Weight)) + 
+  geom_point() + ggtitle("Scatterplot of weight (kg) vs B (ft)") +
+  xlab("B (ft)") + ylab("Weight (kg)") + theme(plot.title = element_text(hjust = 0.5))
+```
+
+]
+
+
+---
+
+.pull-left[
+
+```{r, comment=NA, echo=FALSE}
+ID <- 1:100
+g1 <- c("Male", "Female", "Female", "Female", "Female", "Male", "Male", "Male") 
+Gender <- c(g1, rep("Female", 46), rep("Male", 46))
+b2 <- rnorm(46, mean=3.5) 
+b3 <- rnorm(46, mean=3)
+w2 <- 1000*b2 + rnorm(46, mean=100)
+w3 <- 1500*b3 + rnorm(46, mean=100)
+b1 <- c(3.6, 2.5, 4, 4.5, 3, 3.9, 4.2, 4.6)
+w1 <- c(4000, 5000, 6000, 7000, 7550, 4500, 3375, 5500)
+B <- round(c(b1, b2, b3), 1)
+Weight <- round(c(w1, w2, w3), 0)
+a1 <- c(80, 90, 110, 100, 91.5, 92, 88, 70) 
+a2 <- rnorm(92, mean=100)
+A <- round(c(a1, a2), 1)
+c1 <- c(2.5, 6.3, 4.5, 3.2, 3.5, 3.7, 3.8, 3.9)
+c2 <- rnorm(92, mean=3.5)
+C <- round(c(c1, c2), 1)
+df <- data.frame(ID, Gender, A, B, C, Weight)
+df
+```
+]
+
+
+.pull-right[
+
+```{r, echo=FALSE, comment=NA, warning=FALSE, message=FALSE}
+
+library(ggplot2)
+p1 <- ggplot(data=df, aes(x=B, y=Weight, col=Gender)) + 
+  geom_point() + 
+  ggtitle("Scatterplot of weight (kg) vs B (ft)")+
+  xlab("B (ft)") + ylab("Weight (kg)") + theme(plot.title = element_text(hjust = 0.5)) + scale_colour_manual(values = c("#e7298a","#1b9e77", "green"))
+p1
+```
+
+]
+
+
+---
+
+.pull-left[
+
+```{r, comment=NA, echo=FALSE}
+ID <- 1:100
+g1 <- c("Male", "Female", "Female", "Female", "Female", "Male", "Male", "Male") 
+Gender <- c(g1, rep("Female", 46), rep("Male", 46))
+b2 <- rnorm(46, mean=3.5) 
+b3 <- rnorm(46, mean=3)
+w2 <- 1000*b2 + rnorm(46, mean=100)
+w3 <- 1500*b3 + rnorm(46, mean=100)
+b1 <- c(3.6, 2.5, 4, 4.5, 3, 3.9, 4.2, 4.6)
+w1 <- c(4000, 5000, 6000, 7000, 7550, 4500, 3375, 5500)
+B <- round(c(b1, b2, b3), 1)
+Weight <- round(c(w1, w2, w3), 0)
+a1 <- c(80, 90, 110, 100, 91.5, 92, 88, 70) 
+a2 <- rnorm(92, mean=100)
+A <- round(c(a1, a2), 1)
+c1 <- c(2.5, 6.3, 4.5, 3.2, 3.5, 3.7, 3.8, 3.9)
+c2 <- rnorm(92, mean=3.5)
+C <- round(c(c1, c2), 1)
+df <- data.frame(ID, Gender, A, B, C, Weight)
+df
+```
+]
+
+
+.pull-right[
+
+```{r, echo=FALSE, comment=NA, warning=FALSE, message=FALSE}
+library(plotly)
+ggplotly(p1)
+```
+
+]
+
+---
+background-image: url(i7.png)
+background-size: cover
+
+---
+
+class: center, middle
+
+# What is Statistics?
+
+The science of collecting, analyzing, **presenting, and interpreting** **data**.
+
+
+
+---
+class: center, middle
+
+# Myth-busting Statistics
+
+--
+
+Popular Myths (**false beliefs**) about statistics
+
+---
+class: inverse, center, middle
+
+**Myth 1**
+
+**Statistics is a boring subject.**
+
+
+
+---
+class: inverse, center, middle
+
+~~**Myth 1**~~
+
+**Statistics is a** ~~**boring subject**~~.
+
+
+
+ # **Statistics is a** very interesting and useful subject with so many applications.
+ 
+---
+background-image: url(i8.png)
+background-size: contain
+
+
+
+---
+background-image: url(i9.jpeg)
+background-size: contain
+
+---
+background-image: url(l2.png)
+background-size: contain
+
+---
+background-image: url(l1.png)
+background-size: contain
+
+---
+class: inverse, center, middle
+
+**Myth 2**
+
+**Statistics hasn't changed much in years. It is just the same old stuff.**
+
+
+
+
+---
+class: inverse, center, middle
+
+~~**Myth 2**~~
+
+~~**Statistics hasn't changed much in years. It is just the same old stuff.**~~
+
+## The field of statistics has evolved significantly over time. It has also become a main componenet of many other disciplines.
 ---
 
 References
