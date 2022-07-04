@@ -532,7 +532,7 @@ class: inverse, center, middle
 
 **Myth 3**
 
-**We now have AI and Machine Learning. So, we don't need statistics anymore.**
+**We now have AI and Machine Learning. So, we don't need statistics any more.**
 
 ---
 class: inverse, center, middle
