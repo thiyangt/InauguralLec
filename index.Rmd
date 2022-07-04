@@ -1,9 +1,9 @@
 ---
-title: "Hi"
-subtitle: "🛠️ Data Structures in R"  
+title: "How to succeed in Statistics and why should you love Statistics just as much as I do?  "
+subtitle: ""  
 author: 
-  - ""
   - "Dr Thiyanga Talagala"
+  - "Department of Statistics, University of Sri Jayewardenepura"
 date: ''
 output:
   xaringan::moon_reader:
@@ -15,6 +15,11 @@ output:
       ratio: 16:9
       countIncrementalSlides: true
 ---
+class: middle, left 
+background-image:url('2_stone.jpeg')
+background-position: 90% 80%
+background-size: 100%
+
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
@@ -35,7 +40,30 @@ knitr::opts_chunk$set(
 }
 </style>
 
-# Welcome
+
+
+### <span style="color:#040a47">PhD in Statistics, Monash University, Australia</span>
+
+--
+
+### <span style="color:#040a47">Senior Lecturer, University of Sri Jayewardenepura </span>
+
+--
+
+### <span style="color:#040a47">Associate Investigator of the Australian Research Council Centre of Excellence for Mathematical and Statistical Frontiers (ACEMS), Australia</span>
+
+--
+
+### <span style="color:#040a47">Co-founder and Co-organizer, R-Ladies Colombo (Chapter - R Ladies Global)</span>
+
+--
+
+
+## <span style="color:#630008">BSc (Hons) Special Degree  in Statistics, USJ</span>
+
+## <span style="color:black">Batch first and Professor R A Dayananda  Gold Medalist</span>
+
+
 
 ---
 class: center, middle
@@ -152,9 +180,6 @@ Image data
 
 ]
 
----
-
-
 
 
 
@@ -184,7 +209,7 @@ Image data
 
 **Video data**
 
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/398Zcag0Pw8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ]
 
@@ -412,7 +437,236 @@ class: inverse, center, middle
 ~~**Statistics hasn't changed much in years. It is just the same old stuff.**~~
 
 ## The field of statistics has evolved significantly over time. It has also become a main componenet of many other disciplines.
+
 ---
+
+# Ross Ihaka and Robert Gentleman
+
+.pull-left[
+```{r  echo=FALSE, out.height= "100%", fig_align = 'up'}
+knitr::include_graphics("rr.jpg")
+```
+
+ ]
+ 
+.pull-right[
+
+- Originators of the R programming language
+
+- R is a free software environment for statistical computing and graphics
+
+
+]
+
+---
+# Hadley Wickham: Chief Scientist at RStudio
+
+.pull-left[
+```{r  echo=FALSE, out.width= "100%"}
+knitr::include_graphics("HadleyWickham.png")
+```
+ ]
+.pull-right[
+
+
+- International COPSS Presidents' Award in 2019 for "influential work in statistical computing, visualisation, graphics, and data analysis"
+]
+
+
+---
+
+# Robert Tibshirani
+
+.pull-left[
+```{r  echo=FALSE, out.width= "100%"}
+knitr::include_graphics("Robert_tibshirani.png")
+```
+ ]
+.pull-right[
+
+-  Professor in Statistics and Biomedical Data Science at Stanford University
+
+
+- Received the COPSS Presidents' Award in 1996
+]
+
+---
+# Trevor Hastie
+
+.pull-left[
+```{r  echo=FALSE, out.width= "100%"}
+knitr::include_graphics("TrevorHastie.png")
+```
+ ]
+.pull-right[
+
+- Hastie is known for his contributions to applied statistics, especially in the field of machine learning, data mining, and bioinformatics.
+
+
+]
+
+---
+
+# Andrew Ng
+
+.pull-left[
+```{r  echo=FALSE, out.width= "70%", fig_align = 'up'}
+knitr::include_graphics("Andrew_Ng.jpg")
+```
+ ]
+.pull-right[
+
+-  Undergraduate degree with a triple major in computer science, **statistics**, and economics
+
+- Co-founded and led Google Brain, Coursera and deeplearning.ai
+
+
+]
+
+---
+background-image: url(network.png)
+background-size: contain
+
+---
+class: inverse, center, middle
+
+**Myth 3**
+
+**We now have AI and Machine Learning. So, we don't need statistics anymore.**
+
+---
+class: inverse, center, middle
+
+~~**Myth 3**~~
+
+~~**We now have AI and Machine Learning. So, we don't need statistics any more.**~~
+
+## Statistics plays a vital role in AI and Machine Learning.
+
+---
+
+<iframe width="1060" height="615" src="https://www.youtube.com/embed/pnInsXb8YLc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+---
+.pull-left[
+
+```{r  echo=FALSE, out.width= "70%", fig_align = 'up'}
+knitr::include_graphics("gdpr1.jpeg")
+```
+
+
+
+]
+
+.pull-right[
+
+![](gdpr2.png)
+
+]
+
+---
+class: inverse, center, middle
+
+**Myth 4**
+
+**A statistician's work can be replaced by a computer, because it is all about performing certain numerical calculations.**
+
+---
+class: inverse, center, middle
+
+~~**Myth 4**~~
+
+~~**A statistician's work can be replaced by a computer, because it is all about performing certain numerical calculations.**~~
+
+## Data Scientist and statistician are consistently ranked as best jobs in the world.
+
+---
+background-image: url(job.png)
+background-size: contain
+
+
+
+---
+
+class: inverse, center, middle
+
+**Myth 5**
+
+**Statisticians are boring and unsociable.**
+
+---
+class: inverse, center, middle
+
+~~**Myth 6**~~
+
+~~**Statisticians are boring and unsociable.**~~
+
+## Research provides a thrill of discovery and a challenge to then communicate those insights to others.
+
+--
+
+## Learn to Travel. Travel to Learn.
+---
+background-image: url(stat.png)
+background-size: cover
+
+---
+background-image: url(nc1.png)
+background-size: contain
+
+---
+background-image: url(nc2.png)
+background-size: contain
+
+---
+class: inverse, center, middle
+
+**Myth 7**
+
+**If a person knows probability theory, he/she can become a millionaire by participating in lotteries.**
+
+---
+class: inverse, center, middle
+
+~~**Myth 7**~~
+
+~~**If a person knows probability theory, he/she can become a millionaire by participating in lotteries.**~~
+
+## If a person knows probability theory, he/she knows why he **can't** become a millionaire by participating in lotteries.
+
+---
+background-image: url(c1.png)
+background-size: contain
+
+---
+background-image: url(c2.png)
+background-size: contain
+
+---
+background-image: url(c3.png)
+background-size: contain
+
+---
+background-image: url(c4.png)
+background-size: contain
+
+---
+# What skills and qualifications are required for data science-related jobs?
+
+Link: https://thiyangt.github.io/DSjobtraker_2022_dashboard/
+
+![](hexsticker.png)
+
+---
+background-image: url(ds1.png)
+background-size: contain
+
+---
+background-image: url(ds2.png)
+background-size: contain
+
+---
+
 
 References
 
