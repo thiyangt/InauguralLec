@@ -675,6 +675,31 @@ background-image: url(ds2.png)
 background-size: contain
 
 ---
+class: inverse, middle, center
+
+# Three Key Ingredients
+
+---
+background-image: url(home.jpg)
+background-size: contain
+
+**Physical space**
+
+---
+background-image: url(mental.png)
+background-size: contain
+
+**Mental space**
+
+---
+background-image: url(calendar.jpeg)
+background-size: contain
+
+**Calendar space**
+
+
+
+---
 ## References
 
 Le Dinh, T., Lee, S. H., Kwon, S. G., & Kwon, K. R. (2022). COVID-19 Chest X-ray Classification and Severity Assessment Using Convolutional and Transformer Neural Networks. Applied Sciences, 12(10), 4861.
